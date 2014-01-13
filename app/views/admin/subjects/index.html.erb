@@ -1,0 +1,27 @@
+<h1>All Subjects</h1>
+<h2>
+  <%= link_to "Add subject", new_admin_subject_path,
+    class: "btn btn-medium btn-primary" %>
+</h2>
+
+<%= render "shared/flash_messages" %>
+
+<h4>
+  <ul class="subject">
+    <% @subjects.each do |subject| %>
+      <br/>
+      <li>
+        <div class="subject-info">
+          <%= subject.name  %><br/ng>
+          <%= (subject.time).strftime("%H:%M") %><br/>
+          <%= link_to "edit", edit_admin_subject_path(subject.id), class: "btn btn-medium btn-primary"  %>
+           <%= link_to "delete", admin_subject_path(subject.id),
+            method: :delete, confirm: "Are you sure?",
+            title: "Delete #{subject.name}", class: "link-danger" ,class: "btn btn-medium btn-primary" %>
+      </li>
+    <% end %>
+  </ul>
+</h4>
+<%= will_paginate %>
+       
+ 

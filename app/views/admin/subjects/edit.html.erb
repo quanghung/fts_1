@@ -1,0 +1,16 @@
+<h1 class="offset1 pull-left">Edit Subject</h1>
+
+<div class="row">
+    <div class="span6 offset1">
+      <%= form_for [:admin, @subject], method: :patch do |f| %>
+      <%= render "shared/flash_messages" %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+        
+      <%= f.label :'time' %>
+      <%= f.time_select :time, :value => "14:30" %>
+
+      <%= f.submit "Edit Subject",class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
+</div>
