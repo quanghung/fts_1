@@ -1,8 +1,8 @@
 class CreateQuestions < ActiveRecord::Migration
   def change
     create_table :questions do |t|
-      t.string   "questiontext",         limit: 512,                null: false
-      t.boolean  "type",                    default: false, null: false
+      t.string   "question_text",         limit: 512,                null: false
+      t.boolean  "question_type",                 null: false
       t.integer  "subject_id",                          null: false
       t.timestamps
     end
