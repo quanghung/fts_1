@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113024145) do
+ActiveRecord::Schema.define(version: 20140113092327) do
+
+  create_table "subjects", force: true do |t|
+    t.string   "name",       limit: 512, null: false
+    t.time     "time",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subjects", ["id"], name: "index_subjects_on_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name",            limit: 512, null: false
