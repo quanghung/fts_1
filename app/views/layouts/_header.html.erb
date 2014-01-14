@@ -1,9 +1,11 @@
+
+
 <header class="clearfix">
   <h1 id="top_logo" class="pull-left">
     <%= link_to image_tag("logo.png"), "Framgia Test System", alt: "Framgia" %>
   </h1>
   <div class="navbar pull-right">
-  	<% if signed_in? %>
+        <% if signed_in? %>
         <div class="navbar-inner">
           <ul class="nav">
             <li><%= link_to "Home", root_path %></li>
@@ -20,7 +22,17 @@
             <li><%= link_to "Logout", signout_path, method: :delete %></li>
           </ul>
         </div>
+    <% elsif signed_in_admin? %>
+      <div class="navbar-inner">
+        <ul class="nav">
+          <li><%= link_to "Home", admin_root_path %></li>
+          <li><%= link_to "Users", admin_users_path %></li>
+          <li><%= link_to "Subject", admin_subjects_path %></li>
+          <li><%= link_to "Exam", admin_exams_path %></li>
+          <li><%= link_to "Question", "" %></li>
+          <li><%= link_to "Sign out", admin_signout_path, method: :delete %></li>
+        </ul>
+      </div>
     <% end %>
   </div>
 </header>
-
