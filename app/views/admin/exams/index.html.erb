@@ -1,20 +1,18 @@
 <h1>All Exam</h1>
-
-  <%= link_to "Add Exam",#,
+<%= link_to "Add Exam",new_admin_exam_path,
     class: "btn btn-medium btn-primary" %>
-
-
 <%= render "shared/flash_messages" %>
 <div class="row">
+<br/>
     <div class="span6 offset1">
-      <table style="text-align: center" border="1">      
+      <table style="text-align: center" border="1">
         <thead>
           <tr>
             <th>STT :</th>
             <th>Name Exam :</th>
             <th>Subject :</th>
             <th>Action :</th>
-            <th>Add Users :</th>
+            <th>Show Users :</th>
           </tr>
         </thead>
         <tbody>
@@ -22,15 +20,15 @@
           <tr>
             <td><%= exam.id %></td>
             <td><%= exam.name %></td>
-            <td> <%= link_to  exam.subject.name, '#' %></td>
+            <td> <%= link_to exam.subject.name, '#' %></td>
             <td>
-                <%= link_to "edit", '#' %>
-                <%= link_to "delete", '#',
+                <%= link_to "edit", '#' %>/
+                <%= link_to "delete",admin_exam_path(exam.id),
                       method: :delete, confirm: "Are you sure?",
-                      title: "Delete #{exam.name}", class: "link-danger"  %>
+                      title: "Delete #{exam.name}", class: "link-danger" %>
             </td>
              <td>
-                <%= link_to "Show Users", '#' %>
+                <%= link_to "Show Users", admin_exam_path(exam) %>
             </td>
           </tr>
           <% end %>
