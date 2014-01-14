@@ -1,0 +1,35 @@
+<h4>Exam :
+<%= @exam.name %></h4>
+<h4>Subject :<%= @exam.subject.name %></h4>
+<h3>Examination</h3>
+<div class="row">
+<br/>
+    <div class="span6 offset1">
+      <table style="text-align: center" border="1">
+        <thead>
+          <tr>
+            <th>Name Exam :</th>
+            <th>Status :</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @exam.exam_users.each do |exam_user| %>
+          <%
+            if exam_user.status_exam_user ==true
+              checked = "yes"
+            end
+            if exam_user.status_exam_user ==false
+              checked = "no"
+            end
+          %>
+          <tr>
+            <td><%= exam_user.user.name %></td>
+            <td> <%= checked %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+<%= link_to "Back",admin_exams_path,
+    class: "btn btn-medium btn-primary" %>

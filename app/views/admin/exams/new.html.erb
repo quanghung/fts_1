@@ -1,0 +1,43 @@
+<h1 class="offset1 pull-left">Add Exam</h1>
+
+<div class="row">
+    <div class="span6 offset1">
+      <%= form_for [:admin, @exam] do |f| %>
+      <%= render "shared/flash_messages" %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+       <%= f.label :Subject %>
+      <%= f.select "subject_id", options_from_collection_for_select(@subjects,
+        "id", "name", params["subject_id"]), include_blank: true,
+          id: "subject_select" %><br/>
+      <h4>Add user for Exam</h4>
+     
+      <table style="text-align: center" border="1">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Users Name</th>
+            <th>Add</th>
+          </tr>
+        </thead>
+        <tbody>
+         <%= f.fields_for :exam_users do |builder| %>
+          <tr>
+            <td><%= builder.hidden_field :user_id, value: builder.object.user.id %></td>
+            <td><%= builder.object.user.name %></td>
+            <td>
+             <%= builder.select :status_exam_user,
+              options_for_select([['Yes',true], ['No', false]]) %>
+            </td>
+            </td>
+            </td>
+            <% end %>
+        </tbody>
+      </table>
+      <br/>
+      <%= f.submit "Add Exam",class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
+</div>
+
