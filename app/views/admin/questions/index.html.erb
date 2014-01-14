@@ -1,0 +1,35 @@
+<h1>All Questions</h1>
+<h3>
+  <%= link_to "Add Question", new_admin_question_path,
+    class: "btn btn-medium btn-primary" %>
+</h3>
+<ul class="users">
+  <% @questions.each do |question| %>
+    <li>
+      <div class="user-info">
+        <h3>
+          <%= link_to question.question_text, admin_question_path(question) %>
+          <%= link_to "delete", admin_question_path(question.id),
+            method: :delete, confirm: "Are you sure?",
+            title: "Delete #{question.question_text}", class: "link-danger" %>
+          <div id="answer">
+            <% if question.question_type == false %>
+              <% question.answer_choices.each do |answer_choice| %>
+                <ul>
+                  <li>
+                    <%= check_box_tag "answer_choice_status[]", answer_choice.status,
+                        checked = answer_choice.status %>
+                    <%= answer_choice.text %>
+                  </li>
+                </ul> 
+              <% end %>
+            <% elsif %>
+              <%= question.answer_text.text %>
+            <% end %>
+          </div>
+        </h3>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate %>

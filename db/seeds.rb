@@ -79,8 +79,8 @@ questions_list = [
   {question_text: "question 2",question_type: false,subject_id: 1},
   {question_text: "question 3",question_type: false,subject_id: 1},
   {question_text: "question 4",question_type: true, subject_id: 1},
-  {question_text: "question 5",question_type: false,subject_id: 1},
-  {question_text: "question 6",question_type: false,subject_id: 1},
+  {question_text: "question 5",question_type: true, subject_id: 1},
+  {question_text: "question 6",question_type: true, subject_id: 1},
 ]
 
 questions_list.each do |question|
@@ -94,18 +94,17 @@ answer_choices_list = [
   {text: "choice 4", status: 0,question_id: 1},
   {text: "choice 1", status: 1,question_id: 2},
   {text: "choice 2", status: 0,question_id: 2},
-  {text: "choice 3", status: 0,question_id: 3},
-  {text: "choice 4", status: 0,question_id: 4}
+  {text: "choice 3", status: 1,question_id: 3},
+  {text: "choice 4", status: 0,question_id: 3}
 ]
 
 answer_choices_list.each do |answer_choice|
   AnswerChoice.create! answer_choice
 end
 answer_texts_list = [
-  {text: "choice 1",question_id: 1},
-  {text: "choice 1",question_id: 2},
-  {text: "choice 3",question_id: 3},
-  {text: "choice 4",question_id: 4},
+  {text: "choice 1",question_id: 4},
+  {text: "choice 1",question_id: 5},
+  {text: "choice 3",question_id: 6},
 ]
 
 answer_texts_list.each do |answer_text|

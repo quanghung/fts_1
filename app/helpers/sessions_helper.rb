@@ -12,7 +12,7 @@ module SessionsHelper
     remember_token = Admin.new_remember_token
     cookies.permanent[:remember_token] = remember_token
     admin.not_validates_password = true
-    admin.update_attribute :remember_token, Admin.encrypt(remember_token)
+    admin.update_attributes! remember_token: Admin.encrypt(remember_token)
     self.current_admin = admin
   end
 
