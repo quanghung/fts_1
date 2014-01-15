@@ -1,0 +1,57 @@
+<%= form_for [:admin, @question] do |f| %>
+  <%= render "shared/flash_messages" %>
+  <%= f.label :question_text %>
+  <%= f.text_field :question_text %>
+
+  <%= f.label :subject_id %>
+  <%= f.collection_select :subject_id, @subjects, :id , :name, 
+    		include_blank: 'Please select a team'%>
+  <%= f.label :question_type %>
+  <%= f.select :question_type, options_for_select([["Choice answer", false],
+      ["Text answer", true]], selected: @question.question_type), 
+    	include_blank: 'Please select a team' %>
+
+    <div id="answer">
+      <% unless @question.question_type.nil? %>
+        <% if @question.question_type == true %>
+          <%= f.fields_for :answer_text do |builder| %>
+            <%= builder.label "answer text" %>
+            <%= builder.text_field :text %>
+          <% end %>
+        <% else %>
+          <table border="1">
+            <tr>
+            <th></th>
+            <th>Answer Correct</th>
+            </tr>
+            <%= f.fields_for :answer_choices do |builder| %>
+              <tr>
+                <td><%= builder.text_field :text %></td>
+                <td><%= builder.check_box :status %></td>
+              </tr>
+            <% end %>
+          </table> 
+        <% end %>
+      <% end %>
+    </div>
+  <%= f.submit "Add Subject",class: "btn btn-large btn-primary" %>
+<% end %>
+<script>
+  $(function(){
+    $( "#question_question_type" ).change(function() {
+      $.ajax({
+        data: {
+          question_type: $(this).val(),
+          question_text: $('input[name="question[question_text]"]').val(),
+          subject_id: $('select[name="question[subject_id]"]').val()
+        },
+        type: "GET",
+        url: "new",
+        dataType: "html",
+        success: function(data){ 
+          $('#__question_form').html(data);
+        }
+      });
+    }); 
+  });
+</script>
