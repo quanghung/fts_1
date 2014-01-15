@@ -9,6 +9,7 @@
       <div class="user-info">
         <h3>
           <%= link_to question.question_text, admin_question_path(question) %>
+          <%= link_to "edit", edit_admin_question_path(question.id) %>
           <%= link_to "delete", admin_question_path(question.id),
             method: :delete, confirm: "Are you sure?",
             title: "Delete #{question.question_text}", class: "link-danger" %>

@@ -4,12 +4,12 @@
   <%= f.text_field :question_text %>
 
   <%= f.label :subject_id %>
-    <%= f.collection_select :subject_id, @subjects, :id , :name, 
+  <%= f.collection_select :subject_id, @subjects, :id , :name, 
     		include_blank: 'Please select a team'%>
-
   <%= f.label :question_type %>
-    <%= f.select :question_type, options_for_select([["Choice answer", false], ["Text answer", true]]), 
-    	  include_blank: 'Please select a team'%>
+  <%= f.select :question_type, options_for_select([["Choice answer", false],
+      ["Text answer", true]], selected: @question.question_type), 
+    	include_blank: 'Please select a team' %>
 
     <div id="answer">
       <% unless @question.question_type.nil? %>
@@ -19,18 +19,21 @@
             <%= builder.text_field :text %>
           <% end %>
         <% else %>
-          <%= f.fields_for :answer_choices do |builder| %>
-            <ul>
-              <li>
-                <%= builder.text_field :text %>
-                <%= builder.check_box :status %><p>Answer correct</p>             
-              </li>
-            </ul>
-          <% end %>
+          <table border="1">
+            <tr>
+            <th></th>
+            <th>Answer Correct</th>
+            </tr>
+            <%= f.fields_for :answer_choices do |builder| %>
+              <tr>
+                <td><%= builder.text_field :text %></td>
+                <td><%= builder.check_box :status %></td>
+              </tr>
+            <% end %>
+          </table> 
         <% end %>
       <% end %>
     </div>
-
   <%= f.submit "Add Subject",class: "btn btn-large btn-primary" %>
 <% end %>
 <script>
