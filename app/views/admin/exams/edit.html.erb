@@ -1,0 +1,17 @@
+<h1 class="offset1 pull-left">Edit Exam</h1>
+
+<div class="row">
+    <div class="span6 offset1">
+      <%= form_for [:admin, @exam] do |f| %>
+      <%= render "shared/flash_messages" %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :subjects  %>
+      <%= f.select "subject_id", options_from_collection_for_select(@subjects,
+      "id", "name", @subject.id), include_blank: true,
+        id: "subject_select",  class: "subjects"  %><br/>
+      <%= f.submit "Edit Exam",class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
+</div>

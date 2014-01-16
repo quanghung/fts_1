@@ -1,7 +1,7 @@
 class CreateResults < ActiveRecord::Migration
   def change
     create_table :results do |t|
-      t.integer  "mark",                          null: false
+      t.integer  "mark"                        
       t.integer  "user_id",                          null: false
       t.integer  "exam_id",                          null: false
       t.integer  "subject_id",                          null: false

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :exam_users
-  has_many :exam, through: :exam_users
+  has_many :exams, through: :exam_users
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 }

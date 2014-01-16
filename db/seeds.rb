@@ -31,11 +31,11 @@ admins_list.each do |admin|
 end
 
 subjects_list = [
-  {name: "Mysql", time: 25},
-  {name: "Git", time: 25},
-  {name: "Java", time: 25},
-  {name: "Ruby on Rails", time: 25},
-  {name: "Mysql Ex", time: 25},
+   {name: "Mysql", time: 25,number_choice: 2,number_text: 2},
+  {name: "Git", time: 25,number_choice: 2,number_text: 2},
+  {name: "Java", time: 25,number_choice: 2,number_text: 2},
+  {name: "Ruby on Rails", time: 25,number_choice: 2,number_text: 2},
+  {name: "Mysql Ex", time: 25,number_choice: 2,number_text: 2},
 ]
 
 subjects_list.each do |subject|
@@ -53,8 +53,8 @@ exams_list.each do |exam|
 end
 
 results_list = [
-  {mark:6,subject_id: 1, user_id: 1, exam_id: 1},
-  {mark:8,subject_id: 1, user_id: 2, exam_id: 2},
+  {subject_id: 1, user_id: 1, exam_id: 1},
+  {subject_id: 1, user_id: 2, exam_id: 2},
   {mark:9,subject_id: 1, user_id: 2, exam_id: 3},
   {mark:4,subject_id: 2, user_id: 3, exam_id: 1},
   {mark:5,subject_id: 2, user_id: 4, exam_id: 1}
@@ -109,4 +109,15 @@ answer_texts_list = [
 
 answer_texts_list.each do |answer_text|
   AnswerText.create! answer_text
+end
+
+exam_users_list = [
+  {user_id:1,subject_id: 1,exam_id: 1, status_exam_user: true},
+  {user_id:2,subject_id: 1,exam_id: 1, status_exam_user: true,mark: 9},
+  {user_id:1,subject_id: 2,exam_id: 1, status_exam_user: true,mark: 8},
+  {user_id:2,subject_id: 2,exam_id: 1, status_exam_user: true},
+]
+
+exam_users_list.each do |exam_user|
+  ExamUser.create! exam_user
 end

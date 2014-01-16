@@ -1,0 +1,31 @@
+<h1>All Exam</h1>
+<%= render "shared/flash_messages" %>
+<div class="row">
+<br/>
+    <div class="span6 offset1">
+      <table style="text-align: center" border="1">
+        <thead>
+          <tr>
+            <th>STT :</th>
+            <th>User Name :</th>
+            <th>Subject :</th>
+            <th>Mark</th>
+            <th>Show Exam :</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @examusers.each do |examuser| %>
+          <tr>
+            <td><%= examuser.id %></td>
+            <td><%= examuser.user.name %></td>
+            <td> <%= examuser.subject.name %></td>
+            <td>
+             <% if examuser.mark.nil? %>
+              <%= link_to "Mark" ,'#', class: "btn btn-medium btn-primary"%>
+          <% else %>
+           <%= examuser.mark %>
+          <% end %>
+        <% end %>
+      </td>
+    </div>
+</div>
